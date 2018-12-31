@@ -1,5 +1,10 @@
 import Tkinter as tk
 import time
+import mysql.connector
+from mysql.connector import Error
+
+connection = mysql.connector.connect(host='localhost', database='scores', user='dba', password='password')
+
 
 clocktime = 1200
 hscore = 0
@@ -75,11 +80,11 @@ def Draw():
     timerem = clocktime
     frame=tk.Frame(root, width=500, heigh=500, relief="solid", bd=1)
     frame.place(x=10,y=10)
-    pdis = tk.Label(frame, text = "Period: " + str(period))
+    pdis = tk.Label(frame, text = "Period: " + str(period), font=("Arial 32"))
     pdis.grid(column=0, row=1)
-    sdis = tk.Label(frame, text = "Home: " + str(hscore) + "  Away: " + str(ascore))
+    sdis = tk.Label(frame, text = "Home: " + str(hscore) + "  Away: " + str(ascore), font=("Arial 48"))
     sdis.grid(column=0, row=3)
-    cdis = tk.Label(frame, text = distime)
+    cdis = tk.Label(frame, text = distime, font=("Aril 42"))
     cdis.grid(column=0, row = 5) 
 
 def Refresh():
@@ -111,3 +116,4 @@ root=tk.Tk()
 Draw()
 Refresh()
 root.mainloop()
+connection.close()
