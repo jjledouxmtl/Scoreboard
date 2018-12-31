@@ -15,9 +15,7 @@ def formattime(t):
 def readTime():
     intime = open("time.txt", "r")
     global clocktime
-    global timerem
     clocktime = int(intime.read())
-    timerem = clocktime
 #    print(clocktime)
 
 def readHScore():
@@ -49,11 +47,7 @@ def readBool():
     global timebool
     home = open("bool.txt", "r")
     timebool = int(home.read())
-
-
-def resetBool():
-    home = open("bool.txt", "w")
-    home.write("0")
+    home.close()
 
 
 def Draw():
@@ -65,8 +59,6 @@ def Draw():
     global clocktime
     global cdis
     global timerem
-    global timebool
-    timebool = 0
     readTime()
     readPeriod()
     readHScore()
@@ -91,17 +83,14 @@ def Refresh():
     global clocktime
     global cdis
     global timerem
-    global timebool
     readBool()
-    if timebool == 1:
+    if readBool()
        readTime()
-       resetBool()
-       distime = formattime(clocktime)
-    else:
-       distime = downtime()
+       timebool = 0
     readPeriod()
     readHScore()
     readAScore()
+    distime = downtime()
     pdis.configure(text = "Period: " + str(period))
     sdis.configure(text = "Home: " + str(hscore) + "  Away: " + str(ascore))
     cdis.configure(text = distime)
